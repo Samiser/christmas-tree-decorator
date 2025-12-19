@@ -18,6 +18,9 @@ func _input(event):
 	if !highlighted:
 		return
 
-	if event.is_pressed() and event is InputEventMouseButton:
+	if Input.is_action_pressed("left_click"):
 		var test_note = Note.new(randi_range(0, 7), 0)
 		$decoration.set_decoration(test_note)
+	
+	if Input.is_action_pressed("right_click"):
+		$decoration.remove_decoration()

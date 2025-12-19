@@ -15,3 +15,7 @@ func set_decoration(note: Note) -> void:
 	current_note = note
 	color = color_pitches[note.pitch]
 	visible = true
+
+func remove_decoration() -> void:
+	current_note = null
+	visible = false
