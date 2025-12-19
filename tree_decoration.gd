@@ -10,14 +10,14 @@ func set_decoration(note: Note) -> void:
 	current_note = note
 	color = color_pitches[note.pitch]
 	visible = true
-	light_decoration() 
+	light_decoration(0, current_note) 
 
 func remove_decoration() -> void:
 	current_note = null
 	visible = false
 
-func light_decoration() -> void:
-	if tween != null and tween.is_running():
+func light_decoration(_index: int, note: Note) -> void:
+	if (tween != null and tween.is_running() or note != current_note):
 		return
 		
 	tween = get_tree().create_tween()

@@ -21,6 +21,7 @@ func _create_tree() -> void:
 		for width_index in row * 2:
 			var tile := tree_tile.instantiate()
 			new_row.add_child(tile)
+			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
 
 func _clear_tree() -> void:
 	var children := v_box_container.get_children()
