@@ -8,6 +8,9 @@ func set_note(index: int, note: Note) -> void:
 	if index < length:
 		notes[index] = note
 
+func get_note(index: int) -> Note:
+	return notes.get(index)
+
 func clear_note(index: int) -> void:
 	notes.erase(index)
 

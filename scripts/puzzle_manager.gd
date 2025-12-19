@@ -12,26 +12,28 @@ func _create_puzzles():
 
 func _create_puzzle_1() -> Puzzle:
 	var puzzle = Puzzle.new()
-	
-	var target = Sequence.new()
-	target.length = 2
-	target.set_note(0, Note.new(0, Note.Timbre.BELL))
-	target.set_note(1, Note.new(0, Note.Timbre.BELL))
-	
-	puzzle.constraints.append(Constraint.SequenceMatch.new(target))
-	
+	puzzle.constraints = [
+		Constraint.PitchAtIndex.new(0, 0),
+		Constraint.PitchAtIndex.new(1, 4),
+	]
 	return puzzle
 
 func _create_puzzle_2() -> Puzzle:
 	var puzzle = Puzzle.new()
-	
-	var target = Sequence.new()
-	target.length = 4
-	target.set_note(0, Note.new(0, Note.Timbre.BELL))
-	target.set_note(2, Note.new(0, Note.Timbre.BELL))
-	
-	puzzle.constraints.append(Constraint.SequenceMatch.new(target))
-	
+	puzzle.constraints = [
+		Constraint.PitchAtIndex.new(0, 7),
+		Constraint.SamePitch.new(1, 2),
+	]
+	return puzzle
+
+func _create_puzzle_3() -> Puzzle:
+	var puzzle = Puzzle.new()
+	puzzle.constraints = [
+		Constraint.PitchAtIndex.new(0, 0),
+		Constraint.PitchAtIndex.new(3, 7),
+		Constraint.DifferentPitch.new(1, 2),
+		Constraint.DifferentPitch.new(0, 1),
+	]
 	return puzzle
 
 func get_puzzle(index: int) -> Puzzle:
