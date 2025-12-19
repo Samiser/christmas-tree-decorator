@@ -24,32 +24,30 @@ func _clear_tree() -> void:
 	for child in children:
 		child.queue_free()
 
-func get_row_decorations(row_index : int) -> Array[Note]:
+func get_row_decorations(row_index : int) -> Sequence:
 	var notes : Array[Note]
 	
 	row_index += 1 # excludes the parent node
 	
 	if row_index < 0 || row_index > tree_height:
 		print("Humbug! The row index for get_row_decorations is out of bounds!!!")
-		return notes
+		return null
 	
 	var row_tiles := v_box_container.get_child(row_index).get_children()
 	for tile in row_tiles:
 		notes.append(tile.decoration.current_note)
 	
-	return notes
+	var sequence = Sequence.new()
+	sequence.length = len(notes)
+	for i in len(notes):
+		if notes[i] != null:
+			sequence.set_note(i, notes[i])
+	
+	return sequence
+
+
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			print(get_row_decorations(0))
-		if event.keycode == KEY_2:
-			print(get_row_decorations(1))
-		if event.keycode == KEY_3:
-			print(get_row_decorations(2))
-		if event.keycode == KEY_4:
-			print(get_row_decorations(3))
-		if event.keycode == KEY_5:
-			print(get_row_decorations(4))
-		if event.keycode == KEY_6:
-			print(get_row_decorations(5))
+		if KEY_1 <= event.keycode and event.keycode <= KEY_6:
+			$SequencePlayer.play_sequence(get_row_decorations(event.keycode - 49))

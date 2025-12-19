@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctakbenas6ebq"]
+[gd_scene load_steps=5 format=3 uid="uid://ctakbenas6ebq"]
 
 [ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://tree.gd" id="1_brfkd"]
 [ext_resource type="PackedScene" uid="uid://ikpcmbteetwm" path="res://tree_tile.tscn" id="2_gvmkm"]
 [ext_resource type="PackedScene" uid="uid://tf7iltka61jk" path="res://tree_row.tscn" id="3_d2g23"]
+[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_d2g23"]
 
 [node name="Tree" type="Control"]
 layout_mode = 3
@@ -21,3 +22,5 @@ alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(354, 221)
+
+[node name="SequencePlayer" parent="." instance=ExtResource("4_d2g23")]
