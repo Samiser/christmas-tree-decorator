@@ -18,9 +18,13 @@ func _input(event):
 	if !highlighted:
 		return
 
-	if Input.is_action_pressed("left_click"):
-		var test_note = Note.new(randi_range(0, 7), 0)
-		$decoration.set_decoration(test_note)
+	if Input.is_action_just_pressed("left_click"):
+		var pitch = 0
+		if $decoration.current_note != null:
+			pitch = $decoration.current_note.pitch + 1
+			if pitch > 7:
+				pitch = 0
+		$decoration.set_decoration(Note.new(pitch, 0))
 	
 	if Input.is_action_pressed("right_click"):
 		$decoration.remove_decoration()

@@ -35,5 +35,5 @@ func light_decoration(_index: int, note: Note) -> void:
 	await tween.finished
 	tween = get_tree().create_tween()
 	
-	tween.tween_property(self, "modulate:a", 0.5, 0.5)
-	tween.parallel().tween_property(self, "position:y", position.y + 24, 0.5)
+	tween.tween_property(self, "modulate:a", 0.5, 0.2)
+	tween.parallel().tween_property(self, "position:y", position.y + 24, 0.2)
