@@ -5,9 +5,12 @@ extends Control
 @export var tree_tile : PackedScene
 @export var tree_row : PackedScene
 
+var puzzle_manager: PuzzleManager
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_create_tree()
+	puzzle_manager = PuzzleManager.new()
 
 func _create_tree() -> void:
 	_clear_tree()
@@ -45,9 +48,18 @@ func get_row_decorations(row_index : int) -> Sequence:
 	
 	return sequence
 
-
-
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if KEY_1 <= event.keycode and event.keycode <= KEY_6:
-			$SequencePlayer.play_sequence(get_row_decorations(event.keycode - 49))
+			var index = event.keycode - 49
+			var sequence = get_row_decorations(index)
+			var puzzle = puzzle_manager.get_puzzle(index)
+			
+			$SequencePlayer.play_sequence(sequence)
+			
+			if puzzle == null:
+				print("no puzzle for this row!")
+			elif puzzle.check_solution(sequence):
+				print("solved!!")
+			else:
+				print("incorrect sequence!!")

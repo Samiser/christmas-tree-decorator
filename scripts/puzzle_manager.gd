@@ -1,9 +1,9 @@
 class_name PuzzleManager
-extends Node
+extends RefCounted
 
 var puzzles: Array[Puzzle] = []
 
-func _ready() -> void:
+func _init() -> void:
 	_create_puzzles()
 
 func _create_puzzles():
@@ -26,7 +26,7 @@ func _create_puzzle_2() -> Puzzle:
 	var puzzle = Puzzle.new()
 	
 	var target = Sequence.new()
-	target.length = 3
+	target.length = 4
 	target.set_note(0, Note.new(0, Note.Timbre.BELL))
 	target.set_note(2, Note.new(0, Note.Timbre.BELL))
 	
