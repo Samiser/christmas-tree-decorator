@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c01wynfmqgd6a"]
-
-[ext_resource type="Script" uid="uid://d2vl5v0ndu4oj" path="res://test_audio_scene.gd" id="1_kxs5g"]
-[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="2_xvn0l"]
-
-[node name="TestAudioScene" type="Node2D"]
-script = ExtResource("1_kxs5g")
-
-[node name="SequencePlayer" parent="." instance=ExtResource("2_xvn0l")]

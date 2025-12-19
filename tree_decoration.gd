@@ -1,15 +1,23 @@
 extends ColorRect
+
 var current_note : Note
 var color_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
 var tween : Tween
 
+@onready var bell_player: AudioStreamPlayer = $BellPlayer
+
 func _ready() -> void:
 	modulate.a = 0.5
+
+func play_note(note: Note):
+	bell_player.pitch_scale = note.get_scale()
+	bell_player.play()
 
 func set_decoration(note: Note) -> void:
 	current_note = note
 	color = color_pitches[note.pitch]
 	visible = true
+	play_note(note)
 	light_decoration(0, current_note) 
 
 func remove_decoration() -> void:

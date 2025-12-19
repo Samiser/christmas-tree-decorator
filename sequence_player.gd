@@ -9,7 +9,7 @@ signal note_played(index: int, note: Note)
 signal playback_finished
 
 func play_note(note: Note):
-	bell_player.pitch_scale = _pitch_to_scale(note.pitch)
+	bell_player.pitch_scale = note.get_scale()
 	bell_player.play()
 
 func play_sequence(sequence: Sequence, interval: float = 0.5):
@@ -29,6 +29,3 @@ func play_sequence(sequence: Sequence, interval: float = 0.5):
 
 func stop():
 	is_playing = false
-
-func _pitch_to_scale(pitch: int) -> float:
-	return pow(2.0, pitch / 12.0)
