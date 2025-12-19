@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://daew471gtbf0p"]
+
+[ext_resource type="Script" uid="uid://xmqvxoijf5h4" path="res://light_button.gd" id="1_lbbfs"]
+
+[node name="LightButton" type="ColorRect"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lbbfs")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
