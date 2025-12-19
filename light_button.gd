@@ -15,4 +15,4 @@ func _input(_event):
 		return
 
 	if Input.is_action_just_pressed("left_click"):
-		main_tree.selected_light = index
+		main_tree.select_colour(index)

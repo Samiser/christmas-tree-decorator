@@ -17,6 +17,20 @@ tree_tile = ExtResource("2_gvmkm")
 tree_row = ExtResource("3_d2g23")
 light_button = ExtResource("4_44ud8")
 
+[node name="SelectedColour" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.3764706)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -505.0
+offset_top = -269.0
+offset_right = 505.0
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="TreeContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0

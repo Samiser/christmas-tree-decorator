@@ -4,10 +4,12 @@ class_name tree
 var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
 
 var selected_light := 0
+var current_level := 1
 
 @onready var tree_vbox_container: VBoxContainer = $TreeContainer
 @onready var colour_container: HBoxContainer = $ColourContainer
 @onready var constraints_list: ConstraintsList = $ConstraintsList
+@onready var selected_colour: ColorRect = $SelectedColour
 
 @export var tree_height = 7;
 @export var tree_tile : PackedScene
@@ -22,9 +24,11 @@ func _ready() -> void:
 	_display_lights()
 	_create_tree()
 	puzzle_manager = PuzzleManager.new()
+	select_colour(0)
 
 func _create_tree() -> void:
 	_clear_tree()
+	var level_index := 0
 	for row in tree_height:
 		var new_row := tree_row.instantiate()
 		tree_vbox_container.add_child(new_row)
@@ -33,8 +37,11 @@ func _create_tree() -> void:
 			var tile := tree_tile.instantiate()
 			new_row.add_child(tile)
 			tile.main_tree = self
+			tile.level_index = level_index
 			tile.decoration.main_tree = self
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
+		
+		level_index += 1
 
 func _clear_tree() -> void:
 	var children := tree_vbox_container.get_children()
@@ -79,6 +86,8 @@ func _input(event):
 
 			if puzzle.check_solution(sequence):
 				print("solved!!")
+				current_level += 1
+				constraints_list.current_puzzle = puzzle_manager.get_puzzle(current_level - 1)
 			else:
 				print("incorrect sequence!!")
 
@@ -95,3 +104,8 @@ func _display_lights() -> void:
 		light.index = index
 		light.main_tree = self
 		index += 1
+
+func select_colour(index : int) -> void:
+	selected_light = index
+	var tween := get_tree().create_tween()
+	tween.tween_property(selected_colour, "color", colour_pitches[index], 1.0)

@@ -1,6 +1,7 @@
 extends ColorRect
 
 @onready var decoration: ColorRect = $decoration
+var level_index := 0
 var highlighted := false
 var main_tree : tree
 
@@ -8,6 +9,10 @@ func _ready() -> void:
 	color = Color.DARK_GREEN
 
 func _on_mouse_entered() -> void:
+	if main_tree.current_level != level_index:
+		highlighted = false
+		return
+	
 	color = Color.GREEN
 	highlighted = true
 
