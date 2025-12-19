@@ -1,6 +1,6 @@
 extends ColorRect
 
-var decoration := 0
+@onready var decoration: ColorRect = $decoration
 var highlighted := false
 
 func _ready() -> void:
@@ -19,7 +19,5 @@ func _input(event):
 		return
 
 	if event.is_pressed() and event is InputEventMouseButton:
-		decoration += 1
-		if decoration > 1:
-			decoration = 0
-		$decoration.visible = decoration == 1
+		var test_note = Note.new(randi_range(0, 7), 0)
+		$decoration.set_decoration(test_note)

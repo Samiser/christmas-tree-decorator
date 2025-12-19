@@ -24,8 +24,8 @@ func _clear_tree() -> void:
 	for child in children:
 		child.queue_free()
 
-func get_row_decorations(row_index : int) -> Array[int]:
-	var notes : Array[int]
+func get_row_decorations(row_index : int) -> Array[Note]:
+	var notes : Array[Note]
 	
 	row_index += 1 # excludes the parent node
 	
@@ -35,7 +35,7 @@ func get_row_decorations(row_index : int) -> Array[int]:
 	
 	var row_tiles := v_box_container.get_child(row_index).get_children()
 	for tile in row_tiles:
-		notes.append(tile.decoration)
+		notes.append(tile.decoration.current_note)
 	
 	return notes
 
