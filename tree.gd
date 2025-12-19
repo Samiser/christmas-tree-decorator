@@ -1,14 +1,23 @@
 extends Control
+class_name tree
 
-@onready var v_box_container: VBoxContainer = $VBoxContainer
+var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
+
+var selected_light := 0
+
+@onready var tree_vbox_container: VBoxContainer = $tree_container
+@onready var colour_container: HBoxContainer = $colour_container
+
 @export var tree_height = 7;
 @export var tree_tile : PackedScene
 @export var tree_row : PackedScene
+@export var light_button : PackedScene
 
 var puzzle_manager: PuzzleManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_display_lights()
 	_create_tree()
 	puzzle_manager = PuzzleManager.new()
 
@@ -16,15 +25,17 @@ func _create_tree() -> void:
 	_clear_tree()
 	for row in tree_height:
 		var new_row := tree_row.instantiate()
-		v_box_container.add_child(new_row)
+		tree_vbox_container.add_child(new_row)
 		
 		for width_index in row * 2:
 			var tile := tree_tile.instantiate()
 			new_row.add_child(tile)
+			tile.main_tree = self
+			tile.decoration.main_tree = self
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
 
 func _clear_tree() -> void:
-	var children := v_box_container.get_children()
+	var children := tree_vbox_container.get_children()
 	for child in children:
 		child.queue_free()
 
@@ -37,7 +48,7 @@ func get_row_decorations(row_index : int) -> Sequence:
 		print("Humbug! The row index for get_row_decorations is out of bounds!!!")
 		return null
 	
-	var row_tiles := v_box_container.get_child(row_index).get_children()
+	var row_tiles := tree_vbox_container.get_child(row_index).get_children()
 	for tile in row_tiles:
 		notes.append(tile.decoration.current_note)
 	
@@ -64,3 +75,17 @@ func _input(event):
 				print("solved!!")
 			else:
 				print("incorrect sequence!!")
+
+func _display_lights() -> void:
+	var children := colour_container.get_children()
+	for child in children:
+		child.queue_free()
+	
+	var index := 0
+	for colour in colour_pitches:
+		var light := light_button.instantiate()
+		colour_container.add_child(light)
+		light.color = colour
+		light.index = index
+		light.main_tree = self
+		index += 1

@@ -1,8 +1,8 @@
 extends ColorRect
 
 var current_note : Note
-var color_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
 var tween : Tween
+var main_tree : tree
 
 @onready var bell_player: AudioStreamPlayer = $BellPlayer
 
@@ -15,7 +15,7 @@ func play_note(note: Note):
 
 func set_decoration(note: Note) -> void:
 	current_note = note
-	color = color_pitches[note.pitch]
+	color = main_tree.colour_pitches[note.pitch]
 	visible = true
 	play_note(note)
 	light_decoration(0, current_note) 
