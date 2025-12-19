@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://tf7iltka61jk"]
+
+[node name="TreeRow" type="HBoxContainer"]
+alignment = 1
