@@ -86,8 +86,7 @@ func _input(event):
 
 			if puzzle.check_solution(sequence):
 				print("solved!!")
-				current_level += 1
-				constraints_list.current_puzzle = puzzle_manager.get_puzzle(current_level - 1)
+				next_level() 
 			else:
 				print("incorrect sequence!!")
 
@@ -109,3 +108,7 @@ func select_colour(index : int) -> void:
 	selected_light = index
 	var tween := get_tree().create_tween()
 	tween.tween_property(selected_colour, "color", colour_pitches[index], 1.0)
+
+func next_level() -> void:
+	current_level += 1
+	constraints_list.current_puzzle = puzzle_manager.get_puzzle(current_level - 1)
