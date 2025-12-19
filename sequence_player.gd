@@ -12,7 +12,7 @@ func play_note(note: Note):
 	bell_player.pitch_scale = note.get_scale()
 	bell_player.play()
 
-func play_sequence(sequence: Sequence, interval: float = 0.5):
+func play_sequence(sequence: Sequence, interval: float = 0.3):
 	if is_playing:
 		return
 	is_playing = true
