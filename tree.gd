@@ -5,13 +5,15 @@ var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Col
 
 var selected_light := 0
 
-@onready var tree_vbox_container: VBoxContainer = $tree_container
-@onready var colour_container: HBoxContainer = $colour_container
+@onready var tree_vbox_container: VBoxContainer = $TreeContainer
+@onready var colour_container: HBoxContainer = $ColourContainer
+@onready var constraints_list: ConstraintsList = $ConstraintsList
 
 @export var tree_height = 7;
 @export var tree_tile : PackedScene
 @export var tree_row : PackedScene
 @export var light_button : PackedScene
+
 
 var puzzle_manager: PuzzleManager
 
@@ -69,9 +71,13 @@ func _input(event):
 			
 			$SequencePlayer.play_sequence(sequence)
 			
-			if puzzle == null:
+			if puzzle:
+				constraints_list.current_puzzle = puzzle
+			else:
 				print("no puzzle for this row!")
-			elif puzzle.check_solution(sequence):
+				return
+
+			if puzzle.check_solution(sequence):
 				print("solved!!")
 			else:
 				print("incorrect sequence!!")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctakbenas6ebq"]
+[gd_scene load_steps=7 format=3 uid="uid://ctakbenas6ebq"]
 
 [ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://tree.gd" id="1_brfkd"]
 [ext_resource type="PackedScene" uid="uid://ikpcmbteetwm" path="res://tree_tile.tscn" id="2_gvmkm"]
 [ext_resource type="PackedScene" uid="uid://tf7iltka61jk" path="res://tree_row.tscn" id="3_d2g23"]
 [ext_resource type="PackedScene" uid="uid://daew471gtbf0p" path="res://light_button.tscn" id="4_44ud8"]
 [ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_d2g23"]
+[ext_resource type="PackedScene" uid="uid://dwgq1acfvn16j" path="res://constraints_list.tscn" id="6_ind6k"]
 
 [node name="Tree" type="Control"]
 layout_mode = 3
@@ -16,13 +17,13 @@ tree_tile = ExtResource("2_gvmkm")
 tree_row = ExtResource("3_d2g23")
 light_button = ExtResource("4_44ud8")
 
-[node name="tree_container" type="VBoxContainer" parent="."]
+[node name="TreeContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 alignment = 1
 
-[node name="colour_container" type="HBoxContainer" parent="."]
+[node name="ColourContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = -31.0
 offset_top = 445.0
@@ -34,3 +35,10 @@ alignment = 1
 position = Vector2(354, 221)
 
 [node name="SequencePlayer" parent="." instance=ExtResource("4_d2g23")]
+
+[node name="ConstraintsList" parent="." instance=ExtResource("6_ind6k")]
+layout_mode = 1
+offset_left = 615.0
+offset_top = 48.0
+offset_right = 615.0
+offset_bottom = 702.0

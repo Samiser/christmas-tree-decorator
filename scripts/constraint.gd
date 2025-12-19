@@ -6,7 +6,7 @@ extends Resource
 @abstract func check(sequence: Sequence) -> bool
 
 func pitch_name(pitch: int) -> String:
-	var names = ["C", "D", "E", "F", "G", "A", "B"]
+	var names = ["C", "D", "E", "F", "G", "A", "B", "C"]
 	return names[pitch % 8]
 
 class PitchAtIndex extends Constraint:
