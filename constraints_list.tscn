@@ -12,7 +12,8 @@ script = ExtResource("1_efbjd")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
-text = "Slot 0 is C"
+bbcode_enabled = true
+text = "[color=#ffffff99][i][s]Slot 0 is C[/s][/i][/color]"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]

@@ -1,9 +1,12 @@
+class_name TreeTile
 extends ColorRect
 
 @onready var decoration: ColorRect = $decoration
 var level_index := 0
 var highlighted := false
 var main_tree : tree
+
+signal tile_changed
 
 func _ready() -> void:
 	color = Color.DARK_GREEN
@@ -26,6 +29,8 @@ func _input(_event):
 
 	if Input.is_action_just_pressed("left_click"):
 		$decoration.set_decoration(Note.new(main_tree.selected_light, 0))
+		tile_changed.emit()
 	
 	if Input.is_action_pressed("right_click"):
 		$decoration.remove_decoration()
+		tile_changed.emit()

@@ -34,14 +34,21 @@ func _create_tree() -> void:
 		tree_vbox_container.add_child(new_row)
 		
 		for width_index in row * 2:
-			var tile := tree_tile.instantiate()
+			var tile: TreeTile = tree_tile.instantiate()
 			new_row.add_child(tile)
 			tile.main_tree = self
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
+			tile.tile_changed.connect(_on_tile_changed)
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
 		
 		level_index += 1
+
+func _on_tile_changed() -> void:
+	var puzzle = puzzle_manager.get_puzzle(current_level - 1)
+	for i in len(puzzle.constraints):
+		var sequence := get_row_decorations(current_level - 1)
+		constraints_list.set_constraint_complete(i, puzzle.constraints[i].check(sequence))
 
 func _clear_tree() -> void:
 	var children := tree_vbox_container.get_children()
