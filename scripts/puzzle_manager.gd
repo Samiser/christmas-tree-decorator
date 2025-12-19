@@ -14,10 +14,10 @@ func _create_puzzle_1() -> Puzzle:
 	var puzzle = Puzzle.new()
 	
 	var target = Sequence.new()
-	target.set_length(3)
-	target.set_note(0, 0, Sequence.Timbre.BELL)
-	target.set_note(1, 0, Sequence.Timbre.BELL)
-	target.set_note(2, 0, Sequence.Timbre.BELL)
+	target.set_length(2)
+	target.set_note(0, Note.new(0, Note.Timbre.BELL))
+	target.set_note(1, Note.new(0, Note.Timbre.BELL))
+	target.set_note(2, Note.new(0, Note.Timbre.BELL))
 	
 	puzzle.constraints.append(Constraint.SequenceMatch.new(target))
 	
@@ -27,11 +27,9 @@ func _create_puzzle_2() -> Puzzle:
 	var puzzle = Puzzle.new()
 	
 	var target = Sequence.new()
-	target.set_length(4)
-	target.set_note(0, 0, Sequence.Timbre.LIGHT)
-	target.set_note(1, 0, Sequence.Timbre.LIGHT)
-	target.set_note(2, 0, Sequence.Timbre.LIGHT)
-	target.set_note(3, 0, Sequence.Timbre.LIGHT)
+	target.set_length(3)
+	target.set_note(0, Note.new(0, Note.Timbre.BELL))
+	target.set_note(2, Note.new(0, Note.Timbre.BELL))
 	
 	puzzle.constraints.append(Constraint.SequenceMatch.new(target))
 	
