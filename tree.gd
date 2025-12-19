@@ -4,7 +4,7 @@ class_name tree
 var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
 
 var selected_light := 0
-var current_level := 1
+var current_level := -1
 
 @onready var tree_vbox_container: VBoxContainer = $TreeContainer
 @onready var colour_container: HBoxContainer = $ColourContainer
@@ -15,7 +15,7 @@ var current_level := 1
 @export var tree_tile : PackedScene
 @export var tree_row : PackedScene
 @export var light_button : PackedScene
-
+signal level_change(level: int)
 
 var puzzle_manager: PuzzleManager
 
@@ -25,10 +25,11 @@ func _ready() -> void:
 	_create_tree()
 	puzzle_manager = PuzzleManager.new()
 	select_colour(0)
+	next_level()
 
 func _create_tree() -> void:
 	_clear_tree()
-	var level_index := 0
+	var level_index := -1
 	for row in tree_height:
 		var new_row := tree_row.instantiate()
 		tree_vbox_container.add_child(new_row)
@@ -40,14 +41,15 @@ func _create_tree() -> void:
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
 			tile.tile_changed.connect(_on_tile_changed)
+			level_change.connect(tile.level_change)
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
 		
 		level_index += 1
 
 func _on_tile_changed() -> void:
-	var puzzle = puzzle_manager.get_puzzle(current_level - 1)
+	var puzzle = puzzle_manager.get_puzzle(current_level)
 	for i in len(puzzle.constraints):
-		var sequence := get_row_decorations(current_level - 1)
+		var sequence := get_row_decorations(current_level)
 		constraints_list.set_constraint_complete(i, puzzle.constraints[i].check(sequence))
 
 func _clear_tree() -> void:
@@ -78,10 +80,9 @@ func get_row_decorations(row_index : int) -> Sequence:
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
-		if KEY_1 <= event.keycode and event.keycode <= KEY_6:
-			var index = event.keycode - 49
-			var sequence = get_row_decorations(index)
-			var puzzle = puzzle_manager.get_puzzle(index)
+		if event.keycode == KEY_SPACE:
+			var sequence = get_row_decorations(current_level)
+			var puzzle = puzzle_manager.get_puzzle(current_level)
 			
 			$SequencePlayer.play_sequence(sequence)
 			
@@ -118,4 +119,6 @@ func select_colour(index : int) -> void:
 
 func next_level() -> void:
 	current_level += 1
-	constraints_list.current_puzzle = puzzle_manager.get_puzzle(current_level - 1)
+	constraints_list.current_puzzle = puzzle_manager.get_puzzle(current_level)
+	level_change.emit(current_level)
+	print(current_level)

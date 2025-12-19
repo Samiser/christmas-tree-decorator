@@ -13,13 +13,15 @@ func _ready() -> void:
 
 func _on_mouse_entered() -> void:
 	if main_tree.current_level != level_index:
-		highlighted = false
 		return
 	
 	color = Color.GREEN
 	highlighted = true
 
 func _on_mouse_exited() -> void:
+	if main_tree.current_level != level_index:
+		return
+		
 	color = Color.DARK_GREEN
 	highlighted = false
 
@@ -34,3 +36,11 @@ func _input(_event):
 	if Input.is_action_pressed("right_click"):
 		$decoration.remove_decoration()
 		tile_changed.emit()
+
+func level_change(level: int):
+	highlighted = false
+	
+	if level_index == level:
+		color = Color.DARK_GREEN
+	else:
+		color = Color.DARK_GREEN / 4
