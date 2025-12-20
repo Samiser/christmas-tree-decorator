@@ -17,6 +17,7 @@ func _populate():
 		var label = RichTextLabel.new()
 		label.bbcode_enabled = true
 		label.fit_content = true
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.text = constraint.description()
 		add_child(label)
 

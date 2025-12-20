@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 class_name tree
 
 var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
@@ -6,10 +6,10 @@ var colour_pitches := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Col
 var selected_light := 0
 var current_level := -1
 
-@onready var tree_vbox_container: VBoxContainer = $TreeContainer
-@onready var colour_container: HBoxContainer = $ColourContainer
-@onready var constraints_list: ConstraintsList = $ConstraintsList
-@onready var selected_colour: ColorRect = $SelectedColour
+@export var tree_vbox_container: VBoxContainer 
+@export var colour_container: HBoxContainer
+@export var constraints_list: ConstraintsList
+@export var selected_colour: ColorRect
 
 @export var tree_height = 7;
 @export var tree_tile : PackedScene
@@ -34,15 +34,18 @@ func _create_tree() -> void:
 		var new_row := tree_row.instantiate()
 		tree_vbox_container.add_child(new_row)
 		
+		var tile_index := 0
 		for width_index in row * 2:
 			var tile: TreeTile = tree_tile.instantiate()
 			new_row.add_child(tile)
 			tile.main_tree = self
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
+			tile.num_label.text = str(level_index) + "_" + str(tile_index)
 			tile.tile_changed.connect(_on_tile_changed)
 			level_change.connect(tile.level_change)
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
+			tile_index += 1
 		
 		level_index += 1
 
@@ -110,6 +113,7 @@ func _display_lights() -> void:
 		light.color = colour
 		light.index = index
 		light.main_tree = self
+		light.note_label.text = str(index)
 		index += 1
 
 func select_colour(index : int) -> void:

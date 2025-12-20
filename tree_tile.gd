@@ -1,7 +1,9 @@
 class_name TreeTile
 extends ColorRect
 
-@onready var decoration: ColorRect = $decoration
+@export var decoration: ColorRect
+@export var num_label: RichTextLabel
+
 var level_index := 0
 var highlighted := false
 var main_tree : tree
@@ -15,7 +17,7 @@ func _on_mouse_entered() -> void:
 	if main_tree.current_level != level_index:
 		return
 	
-	color = Color.GREEN
+	color = Color.SEA_GREEN
 	highlighted = true
 
 func _on_mouse_exited() -> void:

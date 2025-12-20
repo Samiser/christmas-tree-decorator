@@ -1,17 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://ikpcmbteetwm"]
+[gd_scene load_steps=4 format=3 uid="uid://ikpcmbteetwm"]
 
 [ext_resource type="Script" uid="uid://5k34j8kxvb43" path="res://tree_tile.gd" id="1_p0j6h"]
 [ext_resource type="PackedScene" uid="uid://bsmjpp33o0i0h" path="res://tree_decoration.tscn" id="2_41qsi"]
+[ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="3_u02pe"]
 
-[node name="TreeTile" type="ColorRect"]
+[node name="TreeTile" type="ColorRect" node_paths=PackedStringArray("decoration", "num_label")]
 custom_minimum_size = Vector2(32, 64)
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 64.0
 script = ExtResource("1_p0j6h")
+decoration = NodePath("decoration")
+num_label = NodePath("RichTextLabel")
 
 [node name="decoration" parent="." instance=ExtResource("2_41qsi")]
 visible = false
 layout_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.54509807)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_u02pe")
+theme_override_fonts/bold_font = ExtResource("3_u02pe")
+theme_override_fonts/bold_italics_font = ExtResource("3_u02pe")
+theme_override_fonts/italics_font = ExtResource("3_u02pe")
+theme_override_fonts/mono_font = ExtResource("3_u02pe")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+vertical_alignment = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

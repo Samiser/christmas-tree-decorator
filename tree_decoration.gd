@@ -7,7 +7,7 @@ var main_tree : tree
 @onready var bell_player: AudioStreamPlayer = $BellPlayer
 
 func _ready() -> void:
-	modulate.a = 0.5
+	modulate.a = 0.7
 
 func play_note(note: Note):
 	bell_player.pitch_scale = note.get_scale()
@@ -35,5 +35,5 @@ func light_decoration(_index: int, note: Note) -> void:
 	await tween.finished
 	tween = get_tree().create_tween()
 	
-	tween.tween_property(self, "modulate:a", 0.5, 0.2)
+	tween.tween_property(self, "modulate:a", 0.7, 0.2)
 	tween.parallel().tween_property(self, "position:y", position.y + 24, 0.2)
