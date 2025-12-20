@@ -15,8 +15,8 @@ const TREE_CONTAINER = preload("uid://b7q2tb2n6uhvp")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tree_container = TREE_CONTAINER.instantiate()
-	tree_container.tree_height = 5
 	tree_container.sequence_player = sequence_player
+	tree_container.puzzle_manager = PuzzleManager.new(TreeOnePuzzles.get_puzzles())
 	left_container.add_child(tree_container)
 	left_container.move_child(tree_container, 0)
 	_set_up_tree_container(tree_container)
@@ -51,9 +51,8 @@ func _input(event):
 		if event.keycode == KEY_SPACE:
 			await tree_container.check_sequence()
 			if tree_container.completed:
-				print("here")
 				var new := TREE_CONTAINER.instantiate()
-				new.tree_height = 7
+				new.puzzle_manager = PuzzleManager.new(TreeTwoPuzzles.get_puzzles())
 				new.sequence_player = sequence_player
 				_replace_tree_container(new)
 

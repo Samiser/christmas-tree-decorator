@@ -1,22 +1,17 @@
-class_name PuzzleManager
-extends RefCounted
+class_name TreeTwoPuzzles
+extends Puzzles
 
-var puzzles: Array[Puzzle] = []
-
-func _init() -> void:
-	_create_puzzles()
-
-func _create_puzzles():
-	puzzles = [
-		_create_puzzle_1(),
-		_create_puzzle_2(),
-		_create_puzzle_3(),
-		_create_puzzle_4(),
-		_create_puzzle_5(),
-		_create_puzzle_6(),
+static func get_puzzles() -> Array[Puzzle]:
+	return [
+		_puzzle_1(),
+		_puzzle_2(),
+		_puzzle_3(),
+		_puzzle_4(),
+		_puzzle_5(),
+		_puzzle_6(),
 	]
 
-func _create_puzzle_1() -> Puzzle:
+static func _puzzle_1() -> Puzzle:
 	# 2 slots - Pure tutorial: place two specific notes
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -25,7 +20,7 @@ func _create_puzzle_1() -> Puzzle:
 	])
 	return puzzle
 
-func _create_puzzle_2() -> Puzzle:
+static func _puzzle_2() -> Puzzle:
 	# 4 slots - Introduces matching
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -35,7 +30,7 @@ func _create_puzzle_2() -> Puzzle:
 	])
 	return puzzle
 
-func _create_puzzle_3() -> Puzzle:
+static func _puzzle_3() -> Puzzle:
 	# 6 slots - Introduces different pitches
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -47,7 +42,7 @@ func _create_puzzle_3() -> Puzzle:
 	])
 	return puzzle
 
-func _create_puzzle_4() -> Puzzle:
+static func _puzzle_4() -> Puzzle:
 	# 8 slots - Chained matching
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -60,7 +55,7 @@ func _create_puzzle_4() -> Puzzle:
 	])
 	return puzzle
 
-func _create_puzzle_5() -> Puzzle:
+static func _puzzle_5() -> Puzzle:
 	# 10 slots - More deduction required
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -75,7 +70,7 @@ func _create_puzzle_5() -> Puzzle:
 	])
 	return puzzle
 
-func _create_puzzle_6() -> Puzzle:
+static func _puzzle_6() -> Puzzle:
 	# 12 slots - Finale for tree 1
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
@@ -92,8 +87,3 @@ func _create_puzzle_6() -> Puzzle:
 		Constraint.DifferentPitch.new(9, 10),
 	])
 	return puzzle
-
-func get_puzzle(index: int) -> Puzzle:
-	if index >= 0 and index < puzzles.size():
-		return puzzles[index]
-	return null

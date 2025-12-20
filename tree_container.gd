@@ -1,8 +1,8 @@
 class_name TreeContainer
 extends VBoxContainer
 
-@export var tree_height = 7;
-@export var sequence_player: SequencePlayer
+var tree_height: int
+var sequence_player: SequencePlayer
 
 const TREE_TILE = preload("uid://ikpcmbteetwm")
 const TREE_ROW = preload("uid://tf7iltka61jk")
@@ -16,7 +16,8 @@ var selected_light := -1
 var completed = false
 
 func _ready() -> void:
-	puzzle_manager = PuzzleManager.new()
+	if not tree_height:
+		tree_height = puzzle_manager.puzzle_count() + 1
 	_create_tree()
 
 func _create_tree() -> void:
