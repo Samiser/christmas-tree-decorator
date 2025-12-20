@@ -11,6 +11,8 @@ const TREE_ROW = preload("uid://tf7iltka61jk")
 signal tile_changed()
 signal level_change(level: int)
 
+var is_dragging := false
+
 var puzzle_manager: PuzzleManager
 var current_level := -1
 var selected_light := -1
@@ -33,7 +35,6 @@ func _create_tree() -> void:
 			var tile: TreeTile = TREE_TILE.instantiate()
 			new_row.add_child(tile)
 			tile.main_tree = self
-			tile.treee = treee
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
 			tile.num_label.text = str(level_index + 1) + "_" + str(tile_index + 1)

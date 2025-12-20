@@ -11,7 +11,6 @@ var tree_container: TreeContainer
 @onready var left_container: VBoxContainer = %LeftContainer
 
 @onready var drag_icon: TextureRect = $drag_icon
-var is_dragging := false
 
 const LIGHT_BUTTON = preload("uid://daew471gtbf0p")
 const TREE_CONTAINER = preload("uid://b7q2tb2n6uhvp")
@@ -94,18 +93,18 @@ func start_note_drag() -> void:
 	drag_icon.modulate = Note.COLORS[tree_container.selected_light] / 1.4
 	
 	drag_icon.visible = true
-	is_dragging = true
+	tree_container.is_dragging = true
 
 func end_note_drag() -> void:
-	if !is_dragging:
+	if !tree_container.is_dragging:
 		return
 	
 	drag_icon.visible = false
-	is_dragging = false
+	tree_container.is_dragging = false
 
 func _process(delta: float) -> void:
 	pass
-	if is_dragging:
+	if tree_container.is_dragging:
 		drag_icon.set_position(get_viewport().get_mouse_position() + Vector2(-16, -16), true)
 		if Input.is_action_just_released("left_click"):
 			end_note_drag()
