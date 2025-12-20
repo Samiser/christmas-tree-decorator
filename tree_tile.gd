@@ -41,7 +41,6 @@ func _input(_event):
 
 func level_change(level: int):
 	highlighted = false
-	print("here")
 	
 	if level_index == level:
 		color = Color.DARK_GREEN

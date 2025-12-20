@@ -35,5 +35,4 @@ func get_pitch_text() -> String:
 	return "[color=%s]%s[/color]" % [color.to_html(), name]
 
 static func pitch_to_text(p: int):
-	print(Note.new(p).get_pitch_text())
 	return Note.new(p).get_pitch_text()
