@@ -17,6 +17,9 @@ func _on_mouse_entered() -> void:
 	if main_tree.current_level != level_index:
 		return
 	
+	if main_tree.sequence_player.is_playing:
+		return
+	
 	color = Color.SEA_GREEN
 	highlighted = true
 
@@ -24,8 +27,16 @@ func _on_mouse_exited() -> void:
 	if main_tree.current_level != level_index:
 		return
 		
+	remove_highlight()
+
+func remove_highlight() -> void:
 	color = Color.DARK_GREEN
 	highlighted = false
+
+func pulse() -> void:
+	var tween := create_tween()
+	color = Color.DARK_GREEN.lightened(0.4)
+	tween.tween_property(self, "color", Color.DARK_GREEN, 0.3)
 
 func _input(_event):
 	if !highlighted:

@@ -6,6 +6,7 @@ extends Node
 var is_playing: bool = false
 
 signal note_played(index: int, note: Note)
+signal tile_checked(index: int)
 signal playback_finished
 
 func play_note(note: Note):
@@ -22,6 +23,7 @@ func play_sequence(sequence: Sequence, interval: float = 0.3):
 			var note = sequence.notes[i]
 			play_note(note)
 			note_played.emit(i, note)
+		tile_checked.emit(i)
 		await get_tree().create_timer(interval).timeout
 	
 	is_playing = false

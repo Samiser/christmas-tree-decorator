@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctakbenas6ebq"]
+[gd_scene load_steps=13 format=3 uid="uid://ctakbenas6ebq"]
 
 [ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://tree.gd" id="1_brfkd"]
 [ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_d2g23"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://ber8c88jbnh6b" path="res://sprites/2025 JAME GAM XMAS ED..png" id="10_mkgly"]
 [ext_resource type="Texture2D" uid="uid://by6my4e7fwnr1" path="res://sprites/hole.png" id="11_mkgly"]
 [ext_resource type="Script" uid="uid://dbxdlmjlor4mi" path="res://tree_container.gd" id="13_fkc4b"]
+
+[sub_resource type="Environment" id="Environment_hy4hq"]
+glow_enabled = true
 
 [node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("tree_container", "colour_container", "constraints_list", "selected_colour", "sequence_player")]
 script = ExtResource("1_brfkd")
@@ -246,3 +249,6 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hy4hq")

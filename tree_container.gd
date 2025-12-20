@@ -50,7 +50,12 @@ func change_level(new_level: int) -> void:
 			tile.level_change(new_level)
 
 func note_played(index: int, note: Note):
-	get_child(current_level + 1).get_child(index).decoration.light_decoration(index, note)
+	var tile: TreeTile = get_child(current_level + 1).get_child(index)
+	tile.decoration.light_decoration(index, note)
+
+func tile_checked(index: int):
+	var tile: TreeTile = get_child(current_level + 1).get_child(index)
+	tile.pulse()
 
 func get_current_sequence() -> Sequence:
 	var notes : Array[Note]
@@ -79,8 +84,15 @@ func check_sequence() -> void:
 	if sequence_player.is_playing:
 		return
 	
+	if current_level >= tree_height - 1:
+		print("tree completed!")
+		return
+	
 	var sequence = get_current_sequence()
 	var puzzle = get_current_puzzle()
+	
+	for tile in get_child(current_level + 1).get_children():
+		tile.remove_highlight()
 	
 	sequence_player.play_sequence(sequence)
 	

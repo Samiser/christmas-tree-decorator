@@ -13,6 +13,7 @@ func _ready() -> void:
 	tree_container.level_change.connect(_on_level_change)
 	tree_container.tile_changed.connect(_on_tile_changed)
 	sequence_player.note_played.connect(tree_container.note_played)
+	sequence_player.tile_checked.connect(tree_container.tile_checked)
 	
 	_display_lights()
 	_on_color_selected(0)
