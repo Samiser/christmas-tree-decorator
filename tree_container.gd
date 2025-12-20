@@ -13,6 +13,7 @@ signal level_change(level: int)
 var puzzle_manager: PuzzleManager
 var current_level := -1
 var selected_light := -1
+var completed = false
 
 func _ready() -> void:
 	puzzle_manager = PuzzleManager.new()
@@ -57,10 +58,10 @@ func tile_checked(index: int):
 	var tile: TreeTile = get_child(current_level + 1).get_child(index)
 	tile.pulse()
 
-func get_current_sequence() -> Sequence:
+func get_sequence(row: int):
 	var notes : Array[Note]
 	
-	var row_tiles := get_child(current_level + 1).get_children()
+	var row_tiles := get_child(row).get_children()
 	
 	for tile in row_tiles:
 		notes.append(tile.decoration.current_note)
@@ -73,6 +74,9 @@ func get_current_sequence() -> Sequence:
 	
 	return sequence
 
+func get_current_sequence() -> Sequence:
+	return get_sequence(current_level + 1)
+
 func next_level() -> void:
 	current_level += 1
 	change_level(current_level)
@@ -82,10 +86,6 @@ func get_current_puzzle() -> Puzzle:
 
 func check_sequence() -> void:
 	if sequence_player.is_playing:
-		return
-	
-	if current_level >= tree_height - 1:
-		print("tree completed!")
 		return
 	
 	var sequence = get_current_sequence()
@@ -103,6 +103,16 @@ func check_sequence() -> void:
 	if puzzle.check_solution(sequence):
 		print("solved!!")
 		await sequence_player.playback_finished
+		if current_level >= tree_height - 2:
+			for row in get_children():
+				for tile in row.get_children():
+					tile.reset_color()
+			await get_tree().create_timer(0.5).timeout
+			completed = true
+			for i in get_child_count():
+				await sequence_player.play_sequence(get_sequence(i))
+			print("tree completed!")
+			return
 		next_level()
 	else:
 		print("incorrect sequence!!")

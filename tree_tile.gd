@@ -34,6 +34,9 @@ func remove_highlight() -> void:
 	highlighted = false
 
 func pulse() -> void:
+	if main_tree.completed:
+		return
+	
 	var tween := create_tween()
 	color = Color.DARK_GREEN.lightened(0.4)
 	tween.tween_property(self, "color", Color.DARK_GREEN, 0.3)
@@ -49,6 +52,11 @@ func _input(_event):
 	if Input.is_action_pressed("right_click"):
 		decoration.remove_decoration()
 		tile_changed.emit()
+
+func reset_color() -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, "color", Color.DARK_GREEN, 0.5)
 
 func level_change(level: int):
 	highlighted = false
