@@ -14,12 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://ber8c88jbnh6b" path="res://sprites/2025 JAME GAM XMAS ED..png" id="10_mkgly"]
 [ext_resource type="Texture2D" uid="uid://by6my4e7fwnr1" path="res://sprites/hole.png" id="11_mkgly"]
 
-[node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("tree_vbox_container", "colour_container", "constraints_list", "selected_colour")]
+[node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("tree_vbox_container", "colour_container", "constraints_list", "selected_colour", "sequence_player")]
 script = ExtResource("1_brfkd")
 tree_vbox_container = NodePath("MainMargin/HBoxContainer/VBoxContainer/TreeContainer")
 colour_container = NodePath("MainMargin/HBoxContainer/VBoxContainer/ColourContainer")
 constraints_list = NodePath("MainMargin/HBoxContainer/ConstraintsList")
 selected_colour = NodePath("SelectedColour")
+sequence_player = NodePath("SequencePlayer")
 tree_tile = ExtResource("2_gvmkm")
 tree_row = ExtResource("3_d2g23")
 light_button = ExtResource("4_44ud8")

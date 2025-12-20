@@ -10,6 +10,7 @@ var current_level := -1
 @export var colour_container: HBoxContainer
 @export var constraints_list: ConstraintsList
 @export var selected_colour: ColorRect
+@export var sequence_player: SequencePlayer
 
 @export var tree_height = 7;
 @export var tree_tile : PackedScene
@@ -84,19 +85,21 @@ func get_row_decorations(row_index : int) -> Sequence:
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_SPACE:
+			if sequence_player.is_playing:
+				return
+			
 			var sequence = get_row_decorations(current_level)
 			var puzzle = puzzle_manager.get_puzzle(current_level)
 			
 			$SequencePlayer.play_sequence(sequence)
 			
-			if puzzle:
-				constraints_list.current_puzzle = puzzle
-			else:
+			if not puzzle:
 				print("no puzzle for this row!")
 				return
 
 			if puzzle.check_solution(sequence):
 				print("solved!!")
+				await sequence_player.playback_finished
 				next_level() 
 			else:
 				print("incorrect sequence!!")

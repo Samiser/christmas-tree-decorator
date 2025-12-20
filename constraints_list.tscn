@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwgq1acfvn16j"]
+[gd_scene load_steps=4 format=3 uid="uid://dwgq1acfvn16j"]
 
 [ext_resource type="Script" uid="uid://bmjxet2v8fen2" path="res://constraints_list.gd" id="1_efbjd"]
 [ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="2_1vgcp"]
+
+[sub_resource type="Theme" id="Theme_1vgcp"]
+default_font = ExtResource("2_1vgcp")
 
 [node name="ConstraintsList" type="VBoxContainer"]
 anchors_preset = 15
@@ -9,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_1vgcp")
+theme_override_constants/separation = 2
 script = ExtResource("1_efbjd")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
