@@ -1,9 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctakbenas6ebq"]
+[gd_scene load_steps=12 format=3 uid="uid://ctakbenas6ebq"]
 
 [ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://tree.gd" id="1_brfkd"]
-[ext_resource type="PackedScene" uid="uid://ikpcmbteetwm" path="res://tree_tile.tscn" id="2_gvmkm"]
-[ext_resource type="PackedScene" uid="uid://tf7iltka61jk" path="res://tree_row.tscn" id="3_d2g23"]
-[ext_resource type="PackedScene" uid="uid://daew471gtbf0p" path="res://light_button.tscn" id="4_44ud8"]
 [ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_d2g23"]
 [ext_resource type="Texture2D" uid="uid://ywxf450mfkfo" path="res://sprites/circ_0.png" id="5_oph6y"]
 [ext_resource type="Texture2D" uid="uid://dyh40hh642jnp" path="res://sprites/circ_3.png" id="6_hy4hq"]
@@ -13,17 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://b854gxnw7ywgj" path="res://sprites/SAMBEE STUDIOS.png" id="9_s00bo"]
 [ext_resource type="Texture2D" uid="uid://ber8c88jbnh6b" path="res://sprites/2025 JAME GAM XMAS ED..png" id="10_mkgly"]
 [ext_resource type="Texture2D" uid="uid://by6my4e7fwnr1" path="res://sprites/hole.png" id="11_mkgly"]
+[ext_resource type="Script" uid="uid://dbxdlmjlor4mi" path="res://tree_container.gd" id="13_fkc4b"]
 
-[node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("tree_vbox_container", "colour_container", "constraints_list", "selected_colour", "sequence_player")]
+[node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("tree_container", "colour_container", "constraints_list", "selected_colour", "sequence_player")]
 script = ExtResource("1_brfkd")
-tree_vbox_container = NodePath("MainMargin/HBoxContainer/VBoxContainer/TreeContainer")
+tree_container = NodePath("MainMargin/HBoxContainer/VBoxContainer/TreeContainer")
 colour_container = NodePath("MainMargin/HBoxContainer/VBoxContainer/ColourContainer")
 constraints_list = NodePath("MainMargin/HBoxContainer/ConstraintsList")
 selected_colour = NodePath("SelectedColour")
 sequence_player = NodePath("SequencePlayer")
-tree_tile = ExtResource("2_gvmkm")
-tree_row = ExtResource("3_d2g23")
-light_button = ExtResource("4_44ud8")
 
 [node name="SelectedColour" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.25882354)
@@ -214,9 +209,6 @@ texture = ExtResource("11_mkgly")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(354, 221)
-
 [node name="SequencePlayer" parent="." instance=ExtResource("4_d2g23")]
 
 [node name="MainMargin" type="MarginContainer" parent="."]
@@ -237,11 +229,13 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TreeContainer" type="VBoxContainer" parent="MainMargin/HBoxContainer/VBoxContainer"]
+[node name="TreeContainer" type="VBoxContainer" parent="MainMargin/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("sequence_player")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
+script = ExtResource("13_fkc4b")
+sequence_player = NodePath("../../../../SequencePlayer")
 
 [node name="ColourContainer" type="HBoxContainer" parent="MainMargin/HBoxContainer/VBoxContainer"]
 layout_mode = 2

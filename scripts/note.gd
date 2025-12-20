@@ -1,10 +1,9 @@
 class_name Note
 extends Resource
 
-enum Timbre { BELL, LIGHT }
+const COLORS := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
 
 var pitch: int
-var timbre: Timbre
 
 var major_scale_map: Dictionary[int, int] = {
 	0: 0,
@@ -17,9 +16,24 @@ var major_scale_map: Dictionary[int, int] = {
 	7: 12,
 }
 
-func _init(p: int, t: Timbre):
+func _init(p: int):
 	pitch = p
-	timbre = t
 
 func get_scale() -> float:
 	return pow(2.0, major_scale_map[pitch] / 12.0)
+
+func get_color() -> Color:
+	return COLORS[pitch]
+
+func get_pitch_name() -> String:
+	var names = ["C", "D", "E", "F", "G", "A", "B", "C"]
+	return names[pitch % 8]
+
+func get_pitch_text() -> String:
+	var color: Color = COLORS[pitch]
+	var name: String = get_pitch_name()
+	return "[color=%s]%s[/color]" % [color.to_html(), name]
+
+static func pitch_to_text(p: int):
+	print(Note.new(p).get_pitch_text())
+	return Note.new(p).get_pitch_text()

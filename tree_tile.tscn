@@ -9,10 +9,10 @@ custom_minimum_size = Vector2(32, 64)
 offset_right = 40.0
 offset_bottom = 64.0
 script = ExtResource("1_p0j6h")
-decoration = NodePath("decoration")
+decoration = NodePath("Decoration")
 num_label = NodePath("RichTextLabel")
 
-[node name="decoration" parent="." instance=ExtResource("2_41qsi")]
+[node name="Decoration" parent="." instance=ExtResource("2_41qsi")]
 visible = false
 layout_mode = 1
 

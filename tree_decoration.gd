@@ -1,8 +1,9 @@
+class_name TreeDecoration
 extends ColorRect
 
 var current_note : Note
 var tween : Tween
-var main_tree : tree
+var main_tree : TreeContainer
 
 @onready var bell_player: AudioStreamPlayer = $BellPlayer
 
@@ -15,7 +16,7 @@ func play_note(note: Note):
 
 func set_decoration(note: Note) -> void:
 	current_note = note
-	color = main_tree.colour_pitches[note.pitch]
+	color = note.get_color()
 	visible = true
 	play_note(note)
 	light_decoration(0, current_note) 

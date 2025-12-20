@@ -1,9 +1,12 @@
+class_name LightButton
 extends ColorRect
 
 @export var note_label : RichTextLabel
-var main_tree : tree
+var main_tree : TreeContainer
 var index := 0
 var highlighted := false
+
+signal color_selected(color: int)
 
 func _ready() -> void:
 	modulate.a = 0.6
@@ -25,4 +28,4 @@ func _input(_event):
 		return
 
 	if Input.is_action_just_pressed("left_click"):
-		main_tree.select_colour(index)
+		color_selected.emit(index)

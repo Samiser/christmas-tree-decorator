@@ -5,10 +5,6 @@ extends Resource
 @abstract func description() -> String
 @abstract func check(sequence: Sequence) -> bool
 
-func pitch_name(pitch: int) -> String:
-	var names = ["C", "D", "E", "F", "G", "A", "B", "C"]
-	return names[pitch % 8]
-
 class PitchAtIndex extends Constraint:
 	var index: int
 	var pitch: int
@@ -18,7 +14,7 @@ class PitchAtIndex extends Constraint:
 		pitch = p
 	
 	func description() -> String:
-		return "Slot %d is %s" % [index + 1, pitch_name(pitch)]
+		return "Slot %d is %s" % [index + 1, Note.pitch_to_text(pitch)]
 	
 	func check(sequence: Sequence) -> bool:
 		if not sequence.notes.has(index):
@@ -67,7 +63,7 @@ class SamePitch extends Constraint:
 		index_b = b
 	
 	func description() -> String:
-		return "Slots %d and %d are the same" % [index_a + 1, index_b + 1]
+		return "Slots %d and %d are the same note" % [index_a + 1, index_b + 1]
 	
 	func check(sequence: Sequence) -> bool:
 		if not sequence.notes.has(index_a) or not sequence.notes.has(index_b):
@@ -84,7 +80,7 @@ class DifferentPitch extends Constraint:
 		index_b = b
 	
 	func description() -> String:
-		return "Slots %d and %d are different" % [index_a + 1, index_b + 1]
+		return "Slots %d and %d are different notes" % [index_a + 1, index_b + 1]
 	
 	func check(sequence: Sequence) -> bool:
 		if not sequence.notes.has(index_a) or not sequence.notes.has(index_b):
@@ -94,7 +90,7 @@ class DifferentPitch extends Constraint:
 
 class NoAdjacentMatch extends Constraint:
 	func description() -> String:
-		return "No two adjacent slots are the same"
+		return "No two adjacent slots are the same note"
 	
 	func check(sequence: Sequence) -> bool:
 		var indices = sequence.notes.keys()
@@ -157,7 +153,7 @@ class PitchCount extends Constraint:
 		count = c
 	
 	func description() -> String:
-		return "%s appears exactly %d time(s)" % [pitch_name(pitch), count]
+		return "%s appears exactly %d time(s)" % [Note.pitch_to_text(pitch), count]
 	
 	func check(sequence: Sequence) -> bool:
 		var actual_count = 0
