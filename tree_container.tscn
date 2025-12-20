@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dbxdlmjlor4mi" path="res://tree_container.gd" id="1_cr1ut"]
 
-[node name="TreeContainer" type="VBoxContainer" node_paths=PackedStringArray("sequence_player")]
+[node name="TreeContainer" type="VBoxContainer"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 script = ExtResource("1_cr1ut")
-sequence_player = NodePath("")

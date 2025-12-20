@@ -1,8 +1,7 @@
 class_name LightButton
-extends ColorRect
+extends TextureRect
 
 @export var note_label : RichTextLabel
-var main_tree : TreeContainer
 var index := 0
 var highlighted := false
 

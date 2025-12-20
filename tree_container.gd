@@ -3,6 +3,7 @@ extends VBoxContainer
 
 var tree_height: int
 var sequence_player: SequencePlayer
+var treee : tree
 
 const TREE_TILE = preload("uid://ikpcmbteetwm")
 const TREE_ROW = preload("uid://tf7iltka61jk")
@@ -32,6 +33,7 @@ func _create_tree() -> void:
 			var tile: TreeTile = TREE_TILE.instantiate()
 			new_row.add_child(tile)
 			tile.main_tree = self
+			tile.treee = treee
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
 			tile.num_label.text = str(level_index + 1) + "_" + str(tile_index + 1)

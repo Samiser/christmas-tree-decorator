@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsmjpp33o0i0h"]
+[gd_scene load_steps=4 format=3 uid="uid://bsmjpp33o0i0h"]
 
 [ext_resource type="Script" uid="uid://7dkocytdmep6" path="res://tree_decoration.gd" id="1_hml2h"]
+[ext_resource type="Texture2D" uid="uid://pqrmjqkpcggh" path="res://sprites/icon_d.png" id="1_m6xx4"]
 [ext_resource type="AudioStream" uid="uid://djmfy03yguw4p" path="res://audio/bell.ogg" id="2_rsyvt"]
 
-[node name="decoration" type="ColorRect"]
-custom_minimum_size = Vector2(16, 16)
+[node name="decoration" type="TextureRect"]
+custom_minimum_size = Vector2(24, 24)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -17,7 +18,9 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 0, 0, 1)
+texture = ExtResource("1_m6xx4")
+expand_mode = 2
+stretch_mode = 5
 script = ExtResource("1_hml2h")
 
 [node name="BellPlayer" type="AudioStreamPlayer" parent="."]

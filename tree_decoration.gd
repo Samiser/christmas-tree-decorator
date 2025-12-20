@@ -1,5 +1,5 @@
 class_name TreeDecoration
-extends ColorRect
+extends TextureRect
 
 var current_note : Note
 var tween : Tween
@@ -16,7 +16,8 @@ func play_note(note: Note):
 
 func set_decoration(note: Note) -> void:
 	current_note = note
-	color = note.get_color()
+	self_modulate = note.get_color()
+	texture = note.get_icon()
 	visible = true
 	play_note(note)
 	light_decoration(0, current_note) 

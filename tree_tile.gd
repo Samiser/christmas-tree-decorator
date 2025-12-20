@@ -7,6 +7,8 @@ extends ColorRect
 var level_index := 0
 var highlighted := false
 var main_tree : TreeContainer
+var treee : tree
+var pressed := false
 
 signal tile_changed
 
@@ -45,7 +47,7 @@ func _input(_event):
 	if !highlighted:
 		return
 
-	if Input.is_action_just_pressed("left_click"):
+	if Input.is_action_just_pressed("left_click") || (treee.is_dragging && Input.is_action_just_released("left_click")):
 		decoration.set_decoration(Note.new(main_tree.selected_light))
 		tile_changed.emit()
 	
