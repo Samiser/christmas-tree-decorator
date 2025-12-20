@@ -1,24 +1,37 @@
 extends CanvasLayer
 
-@export var tree_container: TreeContainer 
+var tree_container: TreeContainer
+
 @export var colour_container: HBoxContainer
 @export var constraints_list: ConstraintsList
 @export var selected_colour: ColorRect
 @export var sequence_player: SequencePlayer
 
+@onready var left_container: VBoxContainer = %LeftContainer
+
 const LIGHT_BUTTON = preload("uid://daew471gtbf0p")
+const TREE_CONTAINER = preload("uid://b7q2tb2n6uhvp")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	tree_container.level_change.connect(_on_level_change)
-	tree_container.tile_changed.connect(_on_tile_changed)
+	tree_container = TREE_CONTAINER.instantiate()
+	tree_container.tree_height = 7
+	tree_container.sequence_player = sequence_player
+	left_container.add_child(tree_container)
+	left_container.move_child(tree_container, 0)
+	_set_up_tree_container(tree_container)
+	
 	sequence_player.note_played.connect(tree_container.note_played)
 	sequence_player.tile_checked.connect(tree_container.tile_checked)
 	
 	_display_lights()
 	_on_color_selected(0)
-	tree_container.next_level()
 
+func _set_up_tree_container(container: TreeContainer) -> void:
+	container.level_change.connect(_on_level_change)
+	container.tile_changed.connect(_on_tile_changed)
+	container.next_level()
+	
 func _on_tile_changed() -> void:
 	var puzzle = tree_container.get_current_puzzle()
 	var sequence := tree_container.get_current_sequence()
