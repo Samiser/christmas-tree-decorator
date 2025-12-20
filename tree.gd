@@ -41,7 +41,7 @@ func _create_tree() -> void:
 			tile.main_tree = self
 			tile.level_index = level_index
 			tile.decoration.main_tree = self
-			tile.num_label.text = str(level_index) + "_" + str(tile_index)
+			tile.num_label.text = str(level_index + 1) + "_" + str(tile_index + 1)
 			tile.tile_changed.connect(_on_tile_changed)
 			level_change.connect(tile.level_change)
 			$SequencePlayer.note_played.connect(tile.decoration.light_decoration)
