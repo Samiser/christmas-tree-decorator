@@ -12,78 +12,66 @@ static func get_puzzles() -> Array[Puzzle]:
 	]
 
 static func _puzzle_1() -> Puzzle:
-	# 2 slots - Pure tutorial: place two specific notes
+	# 2 slots - Intro to Higher
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
 		Constraint.PitchAtIndex.new(0, 0),
-		Constraint.PitchAtIndex.new(1, 2),
+		Constraint.HigherThan.new(1, 0),
 	])
 	return puzzle
 
 static func _puzzle_2() -> Puzzle:
-	# 4 slots - Introduces matching
+	# 4 slots - Zig-zag pattern
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
-		Constraint.PitchAtIndex.new(0, 0),
-		Constraint.PitchAtIndex.new(3, 4),
-		Constraint.SamePitch.new(1, 2),
+		Constraint.PitchAtIndex.new(0, 2),
+		Constraint.HigherThan.new(1, 0),
+		Constraint.LowerThan.new(2, 1),
+		Constraint.HigherThan.new(3, 2),
 	])
 	return puzzle
 
 static func _puzzle_3() -> Puzzle:
-	# 6 slots - Introduces different pitches
+	# 6 slots - Introduces Ascending
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
 		Constraint.PitchAtIndex.new(0, 0),
-		Constraint.PitchAtIndex.new(5, 0),
-		Constraint.SamePitch.new(2, 3),
-		Constraint.DifferentPitch.new(1, 2),
-		Constraint.DifferentPitch.new(3, 4),
+		Constraint.Ascending.new(0, 3),
+		Constraint.LowerThan.new(3, 2),
+		Constraint.SamePitch.new(3, 5),
 	])
 	return puzzle
 
 static func _puzzle_4() -> Puzzle:
-	# 8 slots - Chained matching
+	# 8 slots - Valley shape
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
-		Constraint.PitchAtIndex.new(0, 2),
-		Constraint.PitchAtIndex.new(7, 4),
-		Constraint.SamePitch.new(0, 3),
-		Constraint.SamePitch.new(1, 2),
-		Constraint.SamePitch.new(4, 5),
-		Constraint.DifferentPitch.new(1, 4),
+		Constraint.PitchAtIndex.new(0, 4),
+		Constraint.Descending.new(0, 4),
+		Constraint.Ascending.new(4, 4),
+		Constraint.LowerThan.new(3, 4),
 	])
 	return puzzle
 
 static func _puzzle_5() -> Puzzle:
-	# 10 slots - More deduction required
+	# 10 slots - Mountain shape
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
 		Constraint.PitchAtIndex.new(0, 0),
-		Constraint.PitchAtIndex.new(9, 2),
-		Constraint.SamePitch.new(0, 5),
-		Constraint.SamePitch.new(2, 7),
-		Constraint.SamePitch.new(4, 9),
-		Constraint.DifferentPitch.new(1, 2),
-		Constraint.DifferentPitch.new(3, 4),
-		Constraint.DifferentPitch.new(6, 7),
+		Constraint.Ascending.new(0, 5),
+		Constraint.Descending.new(5, 5),
+		Constraint.SamePitch.new(4, 5),
 	])
 	return puzzle
 
 static func _puzzle_6() -> Puzzle:
-	# 12 slots - Finale for tree 1
+	# 12 slots - Melody: Joy to the World
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
-		Constraint.PitchAtIndex.new(0, 2),
-		Constraint.PitchAtIndex.new(11, 0),
-		Constraint.SamePitch.new(0, 1),
-		Constraint.SamePitch.new(2, 5),
-		Constraint.SamePitch.new(3, 4),
-		Constraint.SamePitch.new(6, 9),
-		Constraint.SamePitch.new(7, 8),
-		Constraint.DifferentPitch.new(0, 2),
-		Constraint.DifferentPitch.new(2, 3),
-		Constraint.DifferentPitch.new(5, 6),
-		Constraint.DifferentPitch.new(9, 10),
+		Constraint.PitchAtIndex.new(0, 7),
+		Constraint.PitchAtIndex.new(7, 0),
+		Constraint.Descending.new(0, 8),
+		Constraint.SamePitch.new(0, 8),
+		Constraint.Descending.new(8, 4),
 	])
 	return puzzle
