@@ -47,7 +47,6 @@ func _create_tree() -> void:
 func _clear_tree() -> void:
 	for child in get_children():
 		child.queue_free()
-	current_level = -1
 
 func change_level(new_level: int) -> void:
 	level_change.emit(current_level)

@@ -25,14 +25,14 @@ func _ready() -> void:
 	left_container.move_child(tree_container, 0)
 	_set_up_tree_container(tree_container)
 	
-	sequence_player.note_played.connect(tree_container.note_played)
-	sequence_player.tile_checked.connect(tree_container.tile_checked)
-	
 	_display_lights()
 	_on_color_selected(0)
 	end_note_drag()
 
 func _set_up_tree_container(container: TreeContainer) -> void:
+	sequence_player.note_played.connect(container.note_played)
+	sequence_player.tile_checked.connect(container.tile_checked)
+	
 	container.level_change.connect(_on_level_change)
 	container.tile_changed.connect(_on_tile_changed)
 	container.next_level()
@@ -40,7 +40,9 @@ func _set_up_tree_container(container: TreeContainer) -> void:
 func _replace_tree_container(new_tree: TreeContainer) -> void:
 	var old_tree := tree_container
 	tree_container = new_tree
-	left_container.remove_child(old_tree)
+	old_tree.queue_free()
+	
+	
 	left_container.add_child(new_tree)
 	left_container.move_child(new_tree, 0)
 	_set_up_tree_container(new_tree)
