@@ -47,6 +47,7 @@ func _create_tree() -> void:
 func _clear_tree() -> void:
 	for child in get_children():
 		child.queue_free()
+	current_level = -1
 
 func change_level(new_level: int) -> void:
 	level_change.emit(current_level)
@@ -55,6 +56,7 @@ func change_level(new_level: int) -> void:
 			tile.level_change(new_level)
 
 func note_played(index: int, note: Note):
+	print("i: " + str(index) + ", current_level: " + str(current_level + 1) + ", child_count: " + str(get_child(current_level + 1).get_child_count()))
 	var tile: TreeTile = get_child(current_level + 1).get_child(index)
 	tile.decoration.light_decoration(index, note)
 
@@ -105,8 +107,8 @@ func check_sequence() -> void:
 		return
 
 	if puzzle.check_solution(sequence):
-		print("solved!!")
 		await sequence_player.playback_finished
+		print("solved!!")
 		if current_level >= tree_height - 2:
 			for row in get_children():
 				for tile in row.get_children():
