@@ -29,7 +29,7 @@ static func _puzzle_2() -> Puzzle:
 	puzzle.set_constraints([
 		Constraint.IsHighest.new(1),
 		Constraint.IsLowest.new(2),
-		Constraint.PitchCount.new(0, 2),
+		Constraint.PitchCount.new(1, 2),
 	])
 	return puzzle
 
@@ -52,6 +52,8 @@ static func _puzzle_4() -> Puzzle:
 		Constraint.NoAdjacentMatch.new(),
 		Constraint.SamePitch.new(0, 4),
 		Constraint.SamePitch.new(3, 7),
+		Constraint.SamePitch.new(1, 6),
+		Constraint.SamePitch.new(2, 5)
 	])
 	return puzzle
 
@@ -60,9 +62,8 @@ static func _puzzle_5() -> Puzzle:
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
 		Constraint.IsLowest.new(0),
-		Constraint.IsLowest.new(9),
 		Constraint.IsHighest.new(4),
-		Constraint.PitchCount.new(0, 3),
+		Constraint.PitchCount.new(3, 3),
 		Constraint.PitchCount.new(4, 2),
 		Constraint.NoAdjacentMatch.new(),
 	])
@@ -83,40 +84,42 @@ static func _puzzle_6() -> Puzzle:
 	return puzzle
 
 static func _puzzle_7() -> Puzzle:
-	# 14 slots - Melody: Silent Night (G A G E pattern)
-	var puzzle = Puzzle.new()
-	puzzle.set_constraints([
-		Constraint.PitchAtIndex.new(0, 4),
-		Constraint.PitchAtIndex.new(3, 2),
-		Constraint.SamePitch.new(0, 2),
-		Constraint.SamePitch.new(0, 4),
-		Constraint.SamePitch.new(0, 6),
-		Constraint.SamePitch.new(1, 5),
-		Constraint.SamePitch.new(3, 7),
-		Constraint.SamePitch.new(8, 9),
-		Constraint.LowerThan.new(8, 7),
-		Constraint.HigherThan.new(1, 0),
-		Constraint.SamePitch.new(10, 12),
-		Constraint.HigherThan.new(11, 10),
-		Constraint.SamePitch.new(11, 13),
-	])
-	return puzzle
-
-static func _puzzle_8() -> Puzzle:
-	# 16 slots - Melody: Jingle Bells
+	# 14 slots - Melody: Jingle Bells Part 1
+	# E E E / E E E / E G C D E /
 	var puzzle = Puzzle.new()
 	puzzle.set_constraints([
 		Constraint.PitchAtIndex.new(0, 2),
-		Constraint.PitchAtIndex.new(7, 4),
-		Constraint.PitchAtIndex.new(8, 0),
-		Constraint.PitchAtIndex.new(9, 1),
-		Constraint.PitchAtIndex.new(10, 2),
+		Constraint.PitchAtIndex.new(9, 4),
+		Constraint.PitchAtIndex.new(10, 0),
+		Constraint.PitchAtIndex.new(11, 1),
+		Constraint.SameSection.new(0, 4, 3),
 		Constraint.SamePitch.new(0, 1),
-		Constraint.SamePitch.new(0, 2),
-		Constraint.SamePitch.new(0, 3),
-		Constraint.SamePitch.new(0, 4),
-		Constraint.SamePitch.new(0, 5),
-		Constraint.SamePitch.new(0, 6),
-		Constraint.Ascending.new(10, 6),
+		Constraint.SamePitch.new(2, 8),
+		Constraint.SamePitch.new(8, 1),
+		Constraint.SamePitch.new(4, 12),
+		Constraint.IsEmpty.new(3),
+		Constraint.IsEmpty.new(7),
+		Constraint.IsEmpty.new(13),
+	])
+	return puzzle
+
+
+static func _puzzle_8() -> Puzzle:
+	# 16 slots - Melody: Jingle Bells Part 2
+	# / / F F F / F E E / G G F D C /
+	var puzzle = Puzzle.new()
+	puzzle.set_constraints([
+		Constraint.PitchAtIndex.new(6, 3),
+		Constraint.PitchAtIndex.new(7, 2),
+		Constraint.PitchAtIndex.new(10, 4),
+		Constraint.PitchAtIndex.new(13, 1),
+		Constraint.SamePitch.new(2, 6),
+		Constraint.SamePitch.new(4, 2),
+		Constraint.SamePitch.new(3, 4),
+		Constraint.SamePitch.new(2, 12),
+		Constraint.SamePitch.new(7, 8),
+		Constraint.SamePitch.new(11, 10),
+		Constraint.Descending.new(11, 4),
+		Constraint.IsEmpty.new(15),
 	])
 	return puzzle

@@ -70,6 +70,17 @@ class SamePitch extends Constraint:
 			return false
 		return sequence.notes[index_a].pitch == sequence.notes[index_b].pitch
 
+class IsEmpty extends Constraint:
+	var index: int
+	
+	func _init(i: int):
+		index = i
+	
+	func description() -> String:
+		return "Slot %d is empty" % [index + 1]
+	
+	func check(sequence: Sequence) -> bool:
+		return not sequence.notes.has(index)
 
 class DifferentPitch extends Constraint:
 	var index_a: int
@@ -204,4 +215,30 @@ class Descending extends Constraint:
 				return false
 			if sequence.notes[curr].pitch <= sequence.notes[next].pitch:
 				return false
+		return true
+
+class SameSection extends Constraint:
+	var start_a: int
+	var start_b: int
+	var section_length: int
+	
+	func _init(a: int, b: int, length: int):
+		start_a = a
+		start_b = b
+		section_length = length
+	
+	func description() -> String:
+		return "Slots %d-%d match slots %d-%d" % [start_a + 1, start_a + section_length, start_b + 1, start_b + section_length]
+	
+	func check(sequence: Sequence) -> bool:
+		for i in section_length:
+			var index_a = start_a + i
+			var index_b = start_b + i
+			if sequence.notes.has(index_a) and not sequence.notes.has(index_b):
+				return false
+			if not sequence.notes.has(index_a) and sequence.notes.has(index_b):
+				return false
+			if sequence.notes.has(index_a) and sequence.notes.has(index_b):
+				if sequence.notes[index_a].pitch != sequence.notes[index_b].pitch:
+					return false
 		return true

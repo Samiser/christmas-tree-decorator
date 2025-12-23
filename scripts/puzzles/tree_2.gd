@@ -49,7 +49,7 @@ static func _puzzle_4() -> Puzzle:
 		Constraint.PitchAtIndex.new(0, 4),
 		Constraint.Descending.new(0, 4),
 		Constraint.Ascending.new(4, 4),
-		Constraint.LowerThan.new(3, 4),
+		Constraint.LowerThan.new(4, 3),
 	])
 	return puzzle
 

@@ -59,7 +59,13 @@ func _input(event):
 			await tree_container.check_sequence()
 			if tree_container.completed:
 				var new := TREE_CONTAINER.instantiate()
-				new.puzzle_manager = PuzzleManager.new(TreeTwoPuzzles.get_puzzles())
+				if tree_container.puzzle_manager.puzzle_count() == len(TreeOnePuzzles.get_puzzles()):
+					new.puzzle_manager = PuzzleManager.new(TreeTwoPuzzles.get_puzzles())
+				elif tree_container.puzzle_manager.puzzle_count() == len(TreeTwoPuzzles.get_puzzles()):
+					new.puzzle_manager = PuzzleManager.new(TreeThreePuzzles.get_puzzles())
+				else:
+					print("victory!!")
+					return
 				new.sequence_player = sequence_player
 				_replace_tree_container(new)
 
