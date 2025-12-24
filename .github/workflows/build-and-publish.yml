@@ -1,0 +1,49 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [main]
+  
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to itch.io'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v14
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      
+      - name: Build game
+        run: nix build
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-build
+          path: result/game.zip
+  
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.publish == true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v14
+      
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: game-build
+      
+      - name: Publish to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          nix develop --command butler push game.zip samiser/tinsel-tunes:html
