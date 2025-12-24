@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://daew471gtbf0p"]
 
-[ext_resource type="Texture2D" uid="uid://bh2e26uph2vr7" path="res://sprites/icon_a.png" id="1_kx5ve"]
-[ext_resource type="Script" uid="uid://xmqvxoijf5h4" path="res://light_button.gd" id="1_lbbfs"]
-[ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="2_o04m4"]
-[ext_resource type="AudioStream" uid="uid://djmfy03yguw4p" path="res://audio/bell.ogg" id="4_rn3cc"]
+[ext_resource type="Texture2D" uid="uid://bh2e26uph2vr7" path="res://sprites/icon_a.png" id="1_km4xc"]
+[ext_resource type="Script" uid="uid://xmqvxoijf5h4" path="res://scripts/light_button.gd" id="2_4eeh7"]
+[ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="3_83ktu"]
+[ext_resource type="AudioStream" uid="uid://djmfy03yguw4p" path="res://audio/bell.ogg" id="4_npxsk"]
 
 [node name="LightButton" type="TextureRect" node_paths=PackedStringArray("note_label")]
 custom_minimum_size = Vector2(32, 32)
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_kx5ve")
+texture = ExtResource("1_km4xc")
 expand_mode = 2
 stretch_mode = 5
-script = ExtResource("1_lbbfs")
+script = ExtResource("2_4eeh7")
 note_label = NodePath("RichTextLabel")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -28,11 +28,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("2_o04m4")
-theme_override_fonts/bold_font = ExtResource("2_o04m4")
-theme_override_fonts/bold_italics_font = ExtResource("2_o04m4")
-theme_override_fonts/italics_font = ExtResource("2_o04m4")
-theme_override_fonts/mono_font = ExtResource("2_o04m4")
+theme_override_fonts/normal_font = ExtResource("3_83ktu")
+theme_override_fonts/bold_font = ExtResource("3_83ktu")
+theme_override_fonts/bold_italics_font = ExtResource("3_83ktu")
+theme_override_fonts/italics_font = ExtResource("3_83ktu")
+theme_override_fonts/mono_font = ExtResource("3_83ktu")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "0"
@@ -41,7 +41,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="BellPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_rn3cc")
+stream = ExtResource("4_npxsk")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

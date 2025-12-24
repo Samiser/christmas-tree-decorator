@@ -1,33 +1,33 @@
 [gd_scene load_steps=10 format=3 uid="uid://ctakbenas6ebq"]
 
-[ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://tree.gd" id="1_brfkd"]
-[ext_resource type="PackedScene" uid="uid://b0v2euxs4rwva" path="res://background.tscn" id="2_44ud8"]
-[ext_resource type="Texture2D" uid="uid://bcwcjjufin6ja" path="res://the-end.png" id="4_6vbnm"]
-[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_d2g23"]
-[ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="6_6vbnm"]
-[ext_resource type="PackedScene" uid="uid://dwgq1acfvn16j" path="res://constraints_list.tscn" id="6_ind6k"]
-[ext_resource type="Texture2D" uid="uid://davdlrfbvs2us" path="res://sprites/icon_c.png" id="11_hy4hq"]
+[ext_resource type="Script" uid="uid://3ttpi45ik3f6" path="res://scripts/tree.gd" id="1_dmmp0"]
+[ext_resource type="PackedScene" uid="uid://b0v2euxs4rwva" path="res://scenes/background.tscn" id="2_m26wl"]
+[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://scenes/sequence_player.tscn" id="3_5yujg"]
+[ext_resource type="Texture2D" uid="uid://bcwcjjufin6ja" path="res://sprites/the-end.png" id="4_r7adx"]
+[ext_resource type="PackedScene" uid="uid://dwgq1acfvn16j" path="res://scenes/constraints_list.tscn" id="5_xprpn"]
+[ext_resource type="Texture2D" uid="uid://davdlrfbvs2us" path="res://sprites/icon_c.png" id="6_2bmcu"]
+[ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="7_528u0"]
 
 [sub_resource type="Environment" id="Environment_hy4hq"]
 glow_enabled = true
 
 [sub_resource type="Theme" id="Theme_bcqui"]
-default_font = ExtResource("6_6vbnm")
+default_font = ExtResource("7_528u0")
 
 [node name="Tree" type="CanvasLayer" node_paths=PackedStringArray("colour_container", "constraints_list", "sequence_player")]
-script = ExtResource("1_brfkd")
+script = ExtResource("1_dmmp0")
 colour_container = NodePath("MainMargin/HBoxContainer/LeftContainer/ColourContainer")
 constraints_list = NodePath("MainMargin/HBoxContainer/ConstraintsList")
 sequence_player = NodePath("SequencePlayer")
 
-[node name="Background" parent="." instance=ExtResource("2_44ud8")]
+[node name="Background" parent="." instance=ExtResource("2_m26wl")]
 
-[node name="SequencePlayer" parent="." instance=ExtResource("4_d2g23")]
+[node name="SequencePlayer" parent="." instance=ExtResource("3_5yujg")]
 
 [node name="TheEnd" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(254, 135)
-texture = ExtResource("4_6vbnm")
+texture = ExtResource("4_r7adx")
 
 [node name="MainMargin" type="MarginContainer" parent="."]
 offset_left = 8.0
@@ -53,7 +53,7 @@ layout_mode = 2
 size_flags_stretch_ratio = 0.5
 alignment = 1
 
-[node name="ConstraintsList" parent="MainMargin/HBoxContainer" instance=ExtResource("6_ind6k")]
+[node name="ConstraintsList" parent="MainMargin/HBoxContainer" instance=ExtResource("5_xprpn")]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -74,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(32, 23)
 mouse_filter = 2
-texture = ExtResource("11_hy4hq")
+texture = ExtResource("6_2bmcu")
 expand_mode = 4
 stretch_mode = 5
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwkf5k3tjvcn4"
-path="res://.godot/imported/tinsel-tunes.png-a628a13dc145240a0c4bddb29739fb7a.ctex"
+path="res://.godot/imported/tinsel-tunes.png-929f50f967af93550245971fd0fcfacb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tinsel-tunes.png"
-dest_files=["res://.godot/imported/tinsel-tunes.png-a628a13dc145240a0c4bddb29739fb7a.ctex"]
+source_file="res://sprites/tinsel-tunes.png"
+dest_files=["res://.godot/imported/tinsel-tunes.png-929f50f967af93550245971fd0fcfacb.ctex"]
 
 [params]
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbxf5c2qbl8yx"]
 
-[ext_resource type="FontFile" uid="uid://stqssvyiwfvs" path="res://fonts/vcr-osd-mono.ttf" id="1_glbon"]
-[ext_resource type="Script" uid="uid://30rkdonw88ks" path="res://main_menu.gd" id="2_fu7sn"]
-[ext_resource type="PackedScene" uid="uid://b0v2euxs4rwva" path="res://background.tscn" id="3_jix8l"]
-[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_jix8l"]
-[ext_resource type="Texture2D" uid="uid://dwkf5k3tjvcn4" path="res://tinsel-tunes.png" id="5_glbon"]
+[ext_resource type="FontFile" uid="uid://stqssvyiwfvs" path="res://fonts/vcr-osd-mono.ttf" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://30rkdonw88ks" path="res://scripts/main_menu.gd" id="2_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://b0v2euxs4rwva" path="res://scenes/background.tscn" id="3_oa1go"]
+[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://scenes/sequence_player.tscn" id="4_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://dwkf5k3tjvcn4" path="res://sprites/tinsel-tunes.png" id="5_jk1qb"]
 
 [sub_resource type="Theme" id="Theme_nlkkf"]
-default_font = ExtResource("1_glbon")
+default_font = ExtResource("1_8ln24")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,9 +17,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_nlkkf")
-script = ExtResource("2_fu7sn")
+script = ExtResource("2_rtw2f")
 
-[node name="Background" parent="." instance=ExtResource("3_jix8l")]
+[node name="Background" parent="." instance=ExtResource("3_oa1go")]
 layout_mode = 1
 
 [node name="StartButton" type="Button" parent="."]
@@ -43,9 +43,9 @@ text = "Start
 wait_time = 1.5
 autostart = true
 
-[node name="SequencePlayer" parent="." instance=ExtResource("4_jix8l")]
+[node name="SequencePlayer" parent="." instance=ExtResource("4_tbmy8")]
 
 [node name="TinselTunes" type="Sprite2D" parent="."]
 position = Vector2(580.00006, 257)
 scale = Vector2(1.482, 1.482)
-texture = ExtResource("5_glbon")
+texture = ExtResource("5_jk1qb")

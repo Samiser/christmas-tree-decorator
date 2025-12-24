@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsmjpp33o0i0h"]
 
-[ext_resource type="Script" uid="uid://7dkocytdmep6" path="res://tree_decoration.gd" id="1_hml2h"]
+[ext_resource type="Script" uid="uid://7dkocytdmep6" path="res://scripts/tree_decoration.gd" id="1_hml2h"]
 [ext_resource type="Texture2D" uid="uid://pqrmjqkpcggh" path="res://sprites/icon_d.png" id="1_m6xx4"]
 [ext_resource type="AudioStream" uid="uid://djmfy03yguw4p" path="res://audio/bell.ogg" id="2_rsyvt"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7q2tb2n6uhvp"]
 
-[ext_resource type="Script" uid="uid://dbxdlmjlor4mi" path="res://tree_container.gd" id="1_cr1ut"]
+[ext_resource type="Script" uid="uid://dbxdlmjlor4mi" path="res://scripts/tree_container.gd" id="1_cr1ut"]
 
 [node name="TreeContainer" type="VBoxContainer"]
 size_flags_horizontal = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ikpcmbteetwm"]
 
-[ext_resource type="Script" uid="uid://5k34j8kxvb43" path="res://tree_tile.gd" id="1_p0j6h"]
-[ext_resource type="PackedScene" uid="uid://bsmjpp33o0i0h" path="res://tree_decoration.tscn" id="2_41qsi"]
+[ext_resource type="Script" uid="uid://5k34j8kxvb43" path="res://scripts/tree_tile.gd" id="1_p0j6h"]
+[ext_resource type="PackedScene" uid="uid://bsmjpp33o0i0h" path="res://scenes/tree_decoration.tscn" id="2_41qsi"]
 [ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="3_u02pe"]
 
 [node name="TreeTile" type="ColorRect" node_paths=PackedStringArray("decoration", "num_label")]
