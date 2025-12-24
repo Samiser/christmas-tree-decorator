@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://daew471gtbf0p"]
+[gd_scene load_steps=5 format=3 uid="uid://daew471gtbf0p"]
 
 [ext_resource type="Texture2D" uid="uid://bh2e26uph2vr7" path="res://sprites/icon_a.png" id="1_kx5ve"]
 [ext_resource type="Script" uid="uid://xmqvxoijf5h4" path="res://light_button.gd" id="1_lbbfs"]
 [ext_resource type="FontFile" uid="uid://cmwhpb6lbgalg" path="res://fonts/vhs-vcr-osd.ttf" id="2_o04m4"]
+[ext_resource type="AudioStream" uid="uid://djmfy03yguw4p" path="res://audio/bell.ogg" id="4_rn3cc"]
 
 [node name="LightButton" type="TextureRect" node_paths=PackedStringArray("note_label")]
 custom_minimum_size = Vector2(32, 32)
@@ -38,6 +39,9 @@ text = "0"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="BellPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rn3cc")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

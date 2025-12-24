@@ -14,7 +14,9 @@ num_label = NodePath("RichTextLabel")
 
 [node name="Decoration" parent="." instance=ExtResource("2_41qsi")]
 visible = false
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
+color = Color(1, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0.54509807)

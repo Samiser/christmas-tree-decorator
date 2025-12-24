@@ -2,6 +2,7 @@ class_name Note
 extends Resource
 
 const COLORS := [Color.RED, Color.BLUE, Color.YELLOW, Color.DEEP_PINK, Color.GREEN, Color.PURPLE, Color.TOMATO, Color.CYAN]
+const NAMES := ["C", "D", "E", "F", "G", "A", "B", "C"]
 const PITCH_ICONS :Array[Texture2D]= [preload("uid://davdlrfbvs2us"), preload("uid://pqrmjqkpcggh"), preload("uid://cuddw5tbfmyoy"), preload("uid://cjv6jfcbrskfa"), preload("uid://d3bifjjh48nec"), preload("uid://bh2e26uph2vr7"), preload("uid://c0vtbblt4vxex"), preload("uid://cpcrjxkb4l0j0")]
 
 var pitch: int
@@ -30,8 +31,7 @@ func get_icon() -> Texture2D:
 	return PITCH_ICONS[pitch] 
 
 func get_pitch_name() -> String:
-	var names = ["C", "D", "E", "F", "G", "A", "B", "C"]
-	return names[pitch % 8]
+	return NAMES[pitch % 8]
 
 func get_pitch_text() -> String:
 	var color: Color = COLORS[pitch]

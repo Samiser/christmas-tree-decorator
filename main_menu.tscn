@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbxf5c2qbl8yx"]
+
+[ext_resource type="FontFile" uid="uid://stqssvyiwfvs" path="res://fonts/vcr-osd-mono.ttf" id="1_glbon"]
+[ext_resource type="Script" uid="uid://30rkdonw88ks" path="res://main_menu.gd" id="2_fu7sn"]
+[ext_resource type="PackedScene" uid="uid://b0v2euxs4rwva" path="res://background.tscn" id="3_jix8l"]
+[ext_resource type="PackedScene" uid="uid://ckjou60itce2u" path="res://sequence_player.tscn" id="4_jix8l"]
+[ext_resource type="Texture2D" uid="uid://dwkf5k3tjvcn4" path="res://tinsel-tunes.png" id="5_glbon"]
+
+[sub_resource type="Theme" id="Theme_nlkkf"]
+default_font = ExtResource("1_glbon")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nlkkf")
+script = ExtResource("2_fu7sn")
+
+[node name="Background" parent="." instance=ExtResource("3_jix8l")]
+layout_mode = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.5
+offset_top = 48.5
+offset_right = 96.5
+offset_bottom = 131.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Start
+"
+
+[node name="BackgroundTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="SequencePlayer" parent="." instance=ExtResource("4_jix8l")]
+
+[node name="TinselTunes" type="Sprite2D" parent="."]
+position = Vector2(580.00006, 257)
+scale = Vector2(1.482, 1.482)
+texture = ExtResource("5_glbon")

@@ -89,6 +89,10 @@ func next_level() -> void:
 func get_current_puzzle() -> Puzzle:
 	return puzzle_manager.get_puzzle(current_level)
 
+func play_tree() -> void:
+	for i in get_child_count():
+		await sequence_player.play_sequence(get_sequence(i))
+
 func check_sequence() -> void:
 	if sequence_player.is_playing:
 		return
@@ -114,8 +118,6 @@ func check_sequence() -> void:
 					tile.reset_color()
 			await get_tree().create_timer(0.5).timeout
 			completed = true
-			for i in get_child_count():
-				await sequence_player.play_sequence(get_sequence(i))
 			print("tree completed!")
 			return
 		next_level()

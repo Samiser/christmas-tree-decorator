@@ -1,0 +1,211 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0v2euxs4rwva"]
+
+[ext_resource type="Script" uid="uid://djpcyhfic7l5x" path="res://background.gd" id="1_vvxqx"]
+[ext_resource type="Texture2D" uid="uid://dyh40hh642jnp" path="res://sprites/circ_3.png" id="2_cdpnt"]
+[ext_resource type="Texture2D" uid="uid://b431nvnqcjxlc" path="res://sprites/circ_2.png" id="3_8u6ia"]
+[ext_resource type="Texture2D" uid="uid://b6spyeql7p8vg" path="res://sprites/circ_1.png" id="4_6i7po"]
+[ext_resource type="Texture2D" uid="uid://ywxf450mfkfo" path="res://sprites/circ_0.png" id="5_e8087"]
+[ext_resource type="Texture2D" uid="uid://b854gxnw7ywgj" path="res://sprites/SAMBEE STUDIOS.png" id="6_b3bg0"]
+[ext_resource type="Texture2D" uid="uid://ber8c88jbnh6b" path="res://sprites/2025 JAME GAM XMAS ED..png" id="7_8umsc"]
+[ext_resource type="Texture2D" uid="uid://by6my4e7fwnr1" path="res://sprites/hole.png" id="8_7kmkt"]
+
+[node name="Background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vvxqx")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.25882354)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Deco" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="circ_3" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.2)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -168.0
+offset_top = 15.0
+offset_bottom = 384.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("2_cdpnt")
+stretch_mode = 4
+
+[node name="circ_2" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.2)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -404.0
+offset_top = -85.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("3_8u6ia")
+stretch_mode = 4
+
+[node name="circ_1" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.2)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -198.0
+offset_right = 316.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_6i7po")
+stretch_mode = 4
+
+[node name="circ_0" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.2)
+layout_mode = 1
+offset_left = 19.0
+offset_top = 24.0
+offset_right = 359.0
+offset_bottom = 345.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_e8087")
+stretch_mode = 4
+
+[node name="label_0" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 59.0
+offset_bottom = 221.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("6_b3bg0")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="label_1" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.56078434)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.25
+offset_top = -17.0
+offset_right = 124.25
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("7_8umsc")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="hole_0" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.4627451)
+layout_mode = 1
+offset_right = 33.0
+offset_bottom = 33.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_7kmkt")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="hole_1" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.4627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+offset_right = 33.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_7kmkt")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="hole_2" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.4627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_7kmkt")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="hole_3" type="TextureRect" parent="MarginContainer/Deco"]
+modulate = Color(1, 1, 1, 0.4627451)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -33.0
+offset_bottom = 33.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_7kmkt")
+expand_mode = 2
+stretch_mode = 4
