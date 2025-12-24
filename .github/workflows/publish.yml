@@ -15,5 +15,20 @@ jobs:
         run: nix build
       
       - name: Publish to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          BUTLER_API_KEY="${{ secrets.BUTLER_API_KEY }}" nix run nixpkgs#butler -- push result/game.zip samiser/tinsel-tunes:html
+          cat > publish.sh <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          
+          if [ -z "${BUTLER_API_KEY:-}" ]; then
+            echo "Error: BUTLER_API_KEY not set"
+            exit 1
+          fi
+          
+          exec nix run nixpkgs#butler -- push result/game.zip samiser/tinsel-tunes:html
+          EOF
+          
+          chmod +x publish.sh
+          BUTLER_API_KEY="$BUTLER_API_KEY" ./publish.sh
