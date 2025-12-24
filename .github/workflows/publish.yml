@@ -15,7 +15,5 @@ jobs:
         run: nix build
       
       - name: Publish to itch.io
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          nix run nixpkgs#butler -- push result/game.zip samiser/tinsel-tunes:html
+          BUTLER_API_KEY="${{ secrets.BUTLER_API_KEY }}" nix run nixpkgs#butler -- push result/game.zip samiser/tinsel-tunes:html
