@@ -6,6 +6,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: butler
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v14
@@ -18,17 +19,4 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          cat > publish.sh <<'EOF'
-          #!/usr/bin/env bash
-          set -euo pipefail
-          
-          if [ -z "${BUTLER_API_KEY:-}" ]; then
-            echo "Error: BUTLER_API_KEY not set"
-            exit 1
-          fi
-          
-          exec nix run nixpkgs#butler -- push result/game.zip samiser/test:html
-          EOF
-          
-          chmod +x publish.sh
-          BUTLER_API_KEY="$BUTLER_API_KEY" ./publish.sh
+          BUTLER_API_KEY="$BUTLER_API_KEY" nix run nixpkgs#butler -- push result/game.zip samiser/test:html
