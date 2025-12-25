@@ -27,7 +27,7 @@ jobs:
             exit 1
           fi
           
-          exec nix run nixpkgs#butler -- push result/game.zip samiser/tinsel-tunes:html
+          exec nix run nixpkgs#butler -- push result/game.zip samiser/test:html
           EOF
           
           chmod +x publish.sh
