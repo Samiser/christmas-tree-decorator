@@ -9,14 +9,7 @@ jobs:
     environment: butler
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v14
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
-      
-      - name: Build game
-        run: nix build
-      
-      - name: Publish to itch.io
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: |
-          BUTLER_API_KEY="$BUTLER_API_KEY" nix run nixpkgs#butler -- push result/game.zip samiser/test:html
+      - uses: samiser/godot-builder/publish@main
+        with:
+          itch-target: samiser/test:html
+          butler-api-key: ${{ secrets.BUTLER_API_KEY }}
